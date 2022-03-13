@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Header from './component/Header';
+import Footer from './component/Footer';
 import Tasks from './component/Tasks';
 import AddTasks from './component/AddTasks';
 
@@ -60,7 +61,7 @@ const deleteTask = async (id) => {
 //Toggle reminder
 const toggleReminder = async (id) => {
   const updateReminder = await fetchSingleTask(id);
-  const updateTask = {...tasks, reminder:!updateReminder.reminder};
+  const updateTask = {...updateReminder, reminder:!updateReminder.reminder};
 
   const res = await fetch(`http://localhost:5000/tasks/${id}`, {
       method:'PUT',
@@ -70,14 +71,10 @@ const toggleReminder = async (id) => {
       body: JSON.stringify(updateTask)
 
   })
-
-  
   const data = await res.json();
   //console.log(data);
-
-
    setTasks(
-     tasks.map((task)=> task.id === id ? {...task, reminder: !data.reminder} : task
+     tasks.map((task)=> task.id === id ? {...task, reminder: data.reminder} : task
         )
      )
 
@@ -89,6 +86,8 @@ const toggleReminder = async (id) => {
       <Header showAdd = {() => setShowAddTask(!showAddTask)} onAdd = {showAddTask} />
       { showAddTask && <AddTasks onAdd={addTask}/> }
       {tasks.length > 0 ? (<Tasks tasks={tasks} onDelete ={deleteTask} onToggle={toggleReminder} /> ) : ("No Task to be Showned")}
+      <Footer/>
+
     </div>
   );
 }
