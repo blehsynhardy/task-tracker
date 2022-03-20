@@ -1,8 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, link } from 'react-router-dom';
 import Header from './component/Header';
 import Footer from './component/Footer';
 import Tasks from './component/Tasks';
 import AddTasks from './component/AddTasks';
+import About from './component/About';
+
 
 function App() {
   const [showAddTask, setShowAddTask] = useState(false)
@@ -80,15 +83,25 @@ const toggleReminder = async (id) => {
 
 }
  
+function Pages() {
+    return (
+      <div className="container">
+            <Header showAdd = {() => setShowAddTask(!showAddTask)} onAdd = {showAddTask} />
+            { showAddTask && <AddTasks onAdd={addTask}/> }
+            {tasks.length > 0 ? (<Tasks tasks={tasks} onDelete ={deleteTask} onToggle={toggleReminder} /> ) : ("No Task to be Showned")}
+            <Footer/>
+          </div>  
+    )
+}
 
-  return (   
-    <div className="container">
-      <Header showAdd = {() => setShowAddTask(!showAddTask)} onAdd = {showAddTask} />
-      { showAddTask && <AddTasks onAdd={addTask}/> }
-      {tasks.length > 0 ? (<Tasks tasks={tasks} onDelete ={deleteTask} onToggle={toggleReminder} /> ) : ("No Task to be Showned")}
-      <Footer/>
+  return ( 
 
-    </div>
+    <BrowserRouter>
+     <Routes>
+        <Route path="/" element={<Pages />} />
+        <Route path="/About" element={<About/>}/>
+      </Routes>
+   </BrowserRouter>
   );
 }
 

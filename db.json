@@ -1,34 +1,22 @@
 {
   "tasks": [
     {
-      "text": "11211111",
-      "day": "22222222",
-      "reminder": false,
-      "id": 1
-    },
-    {
-      "text": "Tommorw is monday",
-      "day": "12th oct 2021",
-      "reminder": true,
-      "id": 2
-    },
-    {
-      "text": "Tommorow is monday",
-      "day": "12th oct 2921",
-      "reminder": true,
-      "id": 3
-    },
-    {
-      "text": "shade wedding",
-      "day": "19th may 2022",
-      "reminder": true,
-      "id": 4
-    },
-    {
       "text": "confirm working",
       "day": "03 march 2022",
-      "reminder": true,
+      "reminder": false,
       "id": 5
+    },
+    {
+      "text": "wetin dey occur",
+      "day": "lets try again",
+      "reminder": true,
+      "id": 6
+    },
+    {
+      "text": "no wynn eme ",
+      "day": "make i no change am for u",
+      "reminder": true,
+      "id": 7
     }
   ]
 }
